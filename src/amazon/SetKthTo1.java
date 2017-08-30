@@ -5,6 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetKthTo1 {
+	// http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/
+	int setKto1_bitwiseTest (int n, int k) {
+		if ((n & (1 << (k - 1))) != 0)
+			return n;
+		else
+			return n + (int)Math.pow(2, k-1);
+	}
+	
+	// http://www.catonmat.net/blog/low-level-bit-hacks-you-absolutely-must-know/
+	int setKto1_bitwise(int n, int k) {
+		return (n | (1 << (k - 1)));
+	}
+
 	int setKto1(int n, int k) {
 		String s = Integer.toBinaryString(n);
 		int length = s.length();
@@ -53,6 +66,8 @@ public class SetKthTo1 {
 		int b = 1;
 		System.out.println(Integer.toBinaryString(a));
 		System.out.println("To binary String : " + setK.setKto1(a, b));
+		System.out.println("Bit operation test : " + setK.setKto1_bitwiseTest(a, b));
+		System.out.println("Bit operation : " + setK.setKto1_bitwise(a, b));
 		System.out.println("Loop : " + setK.setKto1_loop(a, b));
 
 	}
